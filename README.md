@@ -40,3 +40,30 @@ Check/fork original repo from course instructor [liuyubobobo](https://github.com
 16. 邻接表的空间复杂度O(V + E)，建图O(E*V)，未优化时查看两点是否相邻O(degree(v))，求一个点的相邻节点O(degree(v))；优化后（使用HashSet）建图O(E)，查看两点是否相邻O(1)
 
 ### Chapter 3 图的深度优先遍历
+
+17. 树结构的遍历不用担心重复访问的问题，但是图的遍历会有重复遍历的问题（由于可能存在环），需要记录是否该点被访问过
+
+18. dfs模板：
+```python
+dfs(0, visited=[False] * V, lst=[])
+
+def dfs(v, visited, lst):
+    visited[v] = True
+    # 近似于图的先序遍历
+    lst.apppend(v)
+    for w in adj(v):
+        if not visited[w]:
+            dfs(v, visited, lst)
+
+# 感觉递归出口写在开头更好一些
+def dfs(v, visited, lst):
+    if visited[v]:
+        return
+    visited[v] = True
+    # 近似于图的先序遍历
+    lst.apppend(v)
+    for w in adj(v):
+        dfs(v, visited, lst)
+```
+
+19. 深度优先时间复杂度是O(V + E)，如果是联通图，可以简化成O(E)

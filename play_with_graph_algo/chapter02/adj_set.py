@@ -1,4 +1,8 @@
-class AdjList:
+class AdjSet:
+
+    """Suppose to use RB tree, but no TreeSet in vanilla Python, using
+    set instead.
+    """
 
     def __init__(self, filename):
         lines = None
@@ -16,8 +20,8 @@ class AdjList:
         if self._E < 0:
             raise ValueError('E must be non-negative')
 
-        # size V list of list
-        self._adj = [[] for _ in range(self._V)]
+        # size V list of set
+        self._adj = [set() for _ in range(self._V)]
         for each_line in lines[1:]:
             a, b = (int(i) for i in each_line.split())
             self._validate_vertex(a)
@@ -26,11 +30,11 @@ class AdjList:
             if a == b:
                 raise ValueError('Self-Loop is detected!')
 
-            if self._adj[a].count(b):
+            if b in self._adj[a]:
                 raise ValueError('Paralles edges are detected!')
 
-            self._adj[a].append(b)
-            self._adj[b].append(a)
+            self._adj[a].add(b)
+            self._adj[b].add(a)
 
     @property
     def V(self):
@@ -43,7 +47,7 @@ class AdjList:
     def has_edge(self, v, w):
         self._validate_vertex(v)
         self._validate_vertex(w)
-        return self._adj[v].count(w)
+        return w in self._adj[v]
 
     def adj(self, v):
         self._validate_vertex(v)
@@ -67,7 +71,7 @@ class AdjList:
 
 
 if __name__ == '__main__':
-    filename = 'test_data/g.txt'
-    adj_list = AdjList(filename)
-    print(adj_list)
+    filename = 'play_with_graph_algo/chapter02/g.txt'
+    adj_set = AdjSet(filename)
+    print(adj_set)
     
