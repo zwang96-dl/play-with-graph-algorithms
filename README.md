@@ -37,3 +37,6 @@ Check/fork original repo from course instructor [liuyubobobo](https://github.com
 
 15. 稀疏图（sparse graph）和稠密图（dense graph）-> 完全图（complete graph）
 
+16. 邻接表的空间复杂度O(V + E)，建图O(E*V)，未优化时查看两点是否相邻O(degree(v))，求一个点的相邻节点O(degree(v))；优化后（使用HashSet）建图O(E)，查看两点是否相邻O(1)
+
+### Chapter 3 图的深度优先遍历
