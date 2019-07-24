@@ -24,8 +24,8 @@ class AdjSet:
         self._adj = [set() for _ in range(self._V)]
         for each_line in lines[1:]:
             a, b = (int(i) for i in each_line.split())
-            self._validate_vertex(a)
-            self._validate_vertex(b)
+            self.validate_vertex(a)
+            self.validate_vertex(b)
 
             if a == b:
                 raise ValueError('Self-Loop is detected!')
@@ -45,18 +45,18 @@ class AdjSet:
         return self._E
 
     def has_edge(self, v, w):
-        self._validate_vertex(v)
-        self._validate_vertex(w)
+        self.validate_vertex(v)
+        self.validate_vertex(w)
         return w in self._adj[v]
 
     def adj(self, v):
-        self._validate_vertex(v)
+        self.validate_vertex(v)
         return self._adj[v]
 
     def degree(self, v):
         return len(self.adj(v))
 
-    def _validate_vertex(self, v):
+    def validate_vertex(self, v):
         if v < 0 or v >= self._V:
             raise ValueError('vertex ' + v + ' is invalid')
 

@@ -26,8 +26,8 @@ class GraphDFS:
         self._post_order.append(v)
 
     def _dfs_iteration(self, v):
-        """For preorder that's straight-forward by using one stack,
-        but for postorder we need a augmented stack2
+        """For pre-order that's straight-forward by using one stack,
+        but for post-order we need an augmented stack2
         """
         stack1 = [v]
         self._visited[v] = True
