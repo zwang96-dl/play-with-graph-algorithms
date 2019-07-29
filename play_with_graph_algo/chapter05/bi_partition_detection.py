@@ -41,14 +41,20 @@ if __name__ == '__main__':
     filename = 'play_with_graph_algo/chapter05/gg.txt'
     g = Graph(filename)
     bi_partition_detection = BiPartitionDetection(g)
-    print('Is this a bi-partition graph? : {}'.format(bi_partition_detection.is_bi_partition_graph()))
+    print('Is this a bi-partition graph? : {}'.format(
+        bi_partition_detection.is_bi_partition_graph()),
+    )
 
     filename = 'play_with_graph_algo/chapter05/gg2.txt'
     g = Graph(filename)
     bi_partition_detection = BiPartitionDetection(g)
-    print('Is this a bi-partition graph? : {}'.format(bi_partition_detection.is_bi_partition_graph()))
+    print('Is this a bi-partition graph? : {}'.format(
+        bi_partition_detection.is_bi_partition_graph()),
+    )
 
     filename = 'play_with_graph_algo/chapter05/gg3.txt'
     g = Graph(filename)
     bi_partition_detection = BiPartitionDetection(g)
-    print('Is this a bi-partition graph? : {}'.format(bi_partition_detection.is_bi_partition_graph()))
+    print('Is this a bi-partition graph? : {}'.format(
+        bi_partition_detection.is_bi_partition_graph()),
+    )
