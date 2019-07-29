@@ -27,6 +27,8 @@ class SingleSourcePath:
 
     def is_connected_to(self, t):
         self._G.validate_vertex(t)
+        # if t is visited for current self._s
+        # that implies t is in the path of self._s
         return self._visited[t]
 
     def path(self, t):
