@@ -108,6 +108,67 @@ class Solution3:
         return curr
 
 
+class UF:
+
+    def __init__(self, n):
+        self._parent = [i for i in range(n)]
+        self._sz = [1] * n
+
+    def _find(self, p):
+        if p != self._parent[p]:
+            self._parent[p] = self._find(self._parent[p])
+        return self._parent[p]
+
+    def is_connected(self, p, q):
+        return self._find(p) == self._find(q)
+
+    def union_elements(self, p, q):
+        p_root = self._find(p)
+        q_root = self._find(q)
+        if p_root == q_root:
+            return
+        self._parent[p_root] = q_root
+        self._sz[q_root] += self._sz[p_root]
+
+    def size(self, p):
+        return self._sz[self._find(p)]
+
+
+class Solution4:
+
+    DIRECTIONS = [(0, 1), (1, 0), (0, -1), (-1, 0)]
+
+    def max_area_of_island(self, grid):
+        if not grid or not grid[0]:
+            return 0
+        
+        R, C = len(grid), len(grid[0])
+        uf = UF(R * C)
+
+        for v in range(R * C):
+            x = v // C
+            y = v % C
+            if grid[x][y] != 1:
+                continue
+            for dx, dy in self.DIRECTIONS:
+                nextx, nexty = x + dx, y + dy
+                if not 0 <= nextx < R or not 0 <= nexty < C:
+                    continue
+                if grid[nextx][nexty] != 1:
+                    continue
+                next_ = nextx * C + nexty
+                uf.union_elements(v, next_)
+
+        res = 0
+        for v in range(R * C):
+            x = v // C
+            y = v % C
+            if grid[x][y] == 1:
+                res = max(res, uf.size(v))
+        return res
+
+
+
 if __name__ == '__main__':
     data = [
         [1, 1, 0, 0, 0],
@@ -124,3 +185,12 @@ if __name__ == '__main__':
 
     sol3 = Solution3()
     print(sol3.max_area_of_island(data))
+
+    data = [
+        [1, 1, 0, 0, 0],
+        [1, 1, 0, 0, 0],
+        [0, 0, 0, 1, 1],
+        [0, 0, 0, 1, 1],
+    ]
+    sol4 = Solution4()
+    print(sol4.max_area_of_island(data))
