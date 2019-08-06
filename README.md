@@ -1,8 +1,8 @@
-# play-with-graph-algo
+# play-with-graph-algorithms
 
 Python implementation of imooc course [玩转图论算法](https://coding.imooc.com/class/370.html), will update as the course going.
 
-Check/fork original repo from course instructor [liuyubobobo](https://github.com/liuyubobobo))!
+Check/fork original repo from course instructor [liuyubobobo](https://github.com/liuyubobobo)!
 
 ## Notes
 ### Chapter 2 图的基本表示
