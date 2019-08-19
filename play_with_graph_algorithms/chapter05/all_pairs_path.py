@@ -1,6 +1,6 @@
 from collections import deque
-from play_with_graph_algo.chapter02.adj_set import AdjSet as Graph
-from play_with_graph_algo.chapter05.single_source_path import SingleSourcePath
+from play_with_graph_algorithms.chapter02.adj_set import AdjSet as Graph
+from play_with_graph_algorithms.chapter05.single_source_path import SingleSourcePath
 
 
 class AllPairsPath:
@@ -22,7 +22,7 @@ class AllPairsPath:
 
 
 if __name__ == '__main__':
-    filename = 'play_with_graph_algo/chapter04/g1.txt'
+    filename = 'play_with_graph_algorithms/chapter04/g1.txt'
     g = Graph(filename)
     appath = AllPairsPath(g)
     print(appath.path(0, 6))

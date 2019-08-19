@@ -1,4 +1,4 @@
-from play_with_graph_algo.chapter02.adj_set import AdjSet as Graph
+from play_with_graph_algorithms.chapter02.adj_set import AdjSet as Graph
 
 
 class CycleDetection:
@@ -30,12 +30,12 @@ class CycleDetection:
 
 
 if __name__ == '__main__':
-    filename = 'play_with_graph_algo/chapter04/g2.txt'
+    filename = 'play_with_graph_algorithms/chapter04/g2.txt'
     g = Graph(filename)
     cycle_detection = CycleDetection(g)
     print(cycle_detection.has_cycle())
 
-    filename = 'play_with_graph_algo/chapter04/g3.txt'
+    filename = 'play_with_graph_algorithms/chapter04/g3.txt'
     g = Graph(filename)
     cycle_detection = CycleDetection(g)
     print(cycle_detection.has_cycle())

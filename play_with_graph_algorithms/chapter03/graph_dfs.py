@@ -1,4 +1,4 @@
-from play_with_graph_algo.chapter02.adj_set import AdjSet as Graph
+from play_with_graph_algorithms.chapter02.adj_set import AdjSet as Graph
 
 
 class GraphDFS:
@@ -53,7 +53,7 @@ class GraphDFS:
 
 if __name__ == '__main__':
     print('For one block, recursive:')
-    filename = 'play_with_graph_algo/chapter03/g1.txt'
+    filename = 'play_with_graph_algorithms/chapter03/g1.txt'
     g = Graph(filename)
     graph_dfs = GraphDFS(g)
     print(graph_dfs.pre_order)
@@ -62,7 +62,7 @@ if __name__ == '__main__':
     print('*' * 40)
 
     print('For two blocks, recursive:')
-    filename = 'play_with_graph_algo/chapter03/g2.txt'
+    filename = 'play_with_graph_algorithms/chapter03/g2.txt'
     g = Graph(filename)
     graph_dfs = GraphDFS(g)
     print(graph_dfs.pre_order)
@@ -71,7 +71,7 @@ if __name__ == '__main__':
     print('*' * 40)
 
     print('For one block, iteration:')
-    filename = 'play_with_graph_algo/chapter03/g1.txt'
+    filename = 'play_with_graph_algorithms/chapter03/g1.txt'
     g = Graph(filename)
     graph_dfs = GraphDFS(g, recursive=False)
     print(graph_dfs.pre_order)
@@ -80,7 +80,7 @@ if __name__ == '__main__':
     print('*' * 40)
 
     print('For two blocks, iteration:')
-    filename = 'play_with_graph_algo/chapter03/g2.txt'
+    filename = 'play_with_graph_algorithms/chapter03/g2.txt'
     g = Graph(filename)
     graph_dfs = GraphDFS(g, recursive=False)
     print(graph_dfs.pre_order)
