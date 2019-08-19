@@ -1,4 +1,4 @@
-from play_with_graph_algo.chapter02.adj_set import AdjSet as Graph
+from play_with_graph_algorithms.chapter02.adj_set import AdjSet as Graph
 
 
 class BiPartiteDetection:
@@ -38,12 +38,12 @@ class BiPartiteDetection:
 
 
 if __name__ == '__main__':
-    filename = 'play_with_graph_algo/chapter04/g3.txt'
+    filename = 'play_with_graph_algorithms/chapter04/g3.txt'
     g = Graph(filename)
     bi_partite_detection = BiPartiteDetection(g)
     print(bi_partite_detection.is_bi_partite())
 
-    filename = 'play_with_graph_algo/chapter04/g4.txt'
+    filename = 'play_with_graph_algorithms/chapter04/g4.txt'
     g = Graph(filename)
     bi_partite_detection = BiPartiteDetection(g)
     print(bi_partite_detection.is_bi_partite())

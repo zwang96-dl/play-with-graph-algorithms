@@ -1,5 +1,5 @@
 from collections import deque
-from play_with_graph_algo.chapter02.adj_set import AdjSet as Graph
+from play_with_graph_algorithms.chapter02.adj_set import AdjSet as Graph
 
 class SingleSourcePath:
 
@@ -44,7 +44,7 @@ class SingleSourcePath:
 
 
 if __name__ == '__main__':
-    filename = 'play_with_graph_algo/chapter04/g1.txt'
+    filename = 'play_with_graph_algorithms/chapter04/g1.txt'
     g = Graph(filename)
     sspath = SingleSourcePath(g, 0)
     print('0 -> 6 : {}'.format(sspath.path(6)))

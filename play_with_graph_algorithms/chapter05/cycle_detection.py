@@ -1,5 +1,5 @@
 from collections import deque
-from play_with_graph_algo.chapter02.adj_set import AdjSet as Graph
+from play_with_graph_algorithms.chapter02.adj_set import AdjSet as Graph
 
 
 class CycleDetection:
@@ -45,12 +45,12 @@ class CycleDetection:
 
 
 if __name__ == '__main__':
-    filename = 'play_with_graph_algo/chapter05/gg.txt'
+    filename = 'play_with_graph_algorithms/chapter05/gg.txt'
     g = Graph(filename)
     cycle_detection = CycleDetection(g)
     print('Does this graph has cycle? : {}'.format(cycle_detection.has_cycle))
 
-    filename = 'play_with_graph_algo/chapter05/gg2.txt'
+    filename = 'play_with_graph_algorithms/chapter05/gg2.txt'
     g = Graph(filename)
     cycle_detection = CycleDetection(g)
     print('Does this graph has cycle? : {}'.format(cycle_detection.has_cycle))

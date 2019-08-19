@@ -1,5 +1,5 @@
 from collections import deque
-from play_with_graph_algo.chapter02.adj_set import AdjSet as Graph
+from play_with_graph_algorithms.chapter02.adj_set import AdjSet as Graph
 
 
 class BiPartitionDetection:
@@ -38,21 +38,21 @@ class BiPartitionDetection:
 
 
 if __name__ == '__main__':
-    filename = 'play_with_graph_algo/chapter05/gg.txt'
+    filename = 'play_with_graph_algorithms/chapter05/gg.txt'
     g = Graph(filename)
     bi_partition_detection = BiPartitionDetection(g)
     print('Is this a bi-partition graph? : {}'.format(
         bi_partition_detection.is_bi_partition_graph()),
     )
 
-    filename = 'play_with_graph_algo/chapter05/gg2.txt'
+    filename = 'play_with_graph_algorithms/chapter05/gg2.txt'
     g = Graph(filename)
     bi_partition_detection = BiPartitionDetection(g)
     print('Is this a bi-partition graph? : {}'.format(
         bi_partition_detection.is_bi_partition_graph()),
     )
 
-    filename = 'play_with_graph_algo/chapter05/gg3.txt'
+    filename = 'play_with_graph_algorithms/chapter05/gg3.txt'
     g = Graph(filename)
     bi_partition_detection = BiPartitionDetection(g)
     print('Is this a bi-partition graph? : {}'.format(

@@ -1,5 +1,5 @@
 from collections import deque
-from play_with_graph_algo.chapter02.adj_set import AdjSet as Graph
+from play_with_graph_algorithms.chapter02.adj_set import AdjSet as Graph
 
 
 # Unweighted Single Source Shortest path
@@ -56,7 +56,7 @@ class USSSPath:
 
 
 if __name__ == '__main__':
-    filename = 'play_with_graph_algo/chapter05/gg.txt'
+    filename = 'play_with_graph_algorithms/chapter05/gg.txt'
     g = Graph(filename)
     sspath = USSSPath(g, 0)
     print('0 -> 6 : {}'.format(sspath.path(6)))

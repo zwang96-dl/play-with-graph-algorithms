@@ -1,5 +1,5 @@
 from collections import deque
-from play_with_graph_algo.chapter02.adj_set import AdjSet as Graph
+from play_with_graph_algorithms.chapter02.adj_set import AdjSet as Graph
 
 
 class GraphBFS:
@@ -31,7 +31,7 @@ class GraphBFS:
 
 
 if __name__ == '__main__':
-    filename = 'play_with_graph_algo/chapter04/g1.txt'
+    filename = 'play_with_graph_algorithms/chapter04/g1.txt'
     g = Graph(filename)
     graph_bfs = GraphBFS(g)
     print('BFS order : {}'.format(graph_bfs.order()))

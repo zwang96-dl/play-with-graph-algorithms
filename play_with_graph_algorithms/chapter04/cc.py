@@ -1,4 +1,4 @@
-from play_with_graph_algo.chapter02.adj_set import AdjSet as Graph
+from play_with_graph_algorithms.chapter02.adj_set import AdjSet as Graph
 
 
 class CC:
@@ -56,25 +56,25 @@ class CC:
 
 
 if __name__ == '__main__':
-    filename = 'play_with_graph_algo/chapter04/g1.txt'
+    filename = 'play_with_graph_algorithms/chapter04/g1.txt'
     g = Graph(filename)
     cc = CC(g)
     print(cc.ccount)
     print(cc.groups)
 
-    filename = 'play_with_graph_algo/chapter04/g2.txt'
+    filename = 'play_with_graph_algorithms/chapter04/g2.txt'
     g = Graph(filename)
     cc = CC(g)
     print(cc.ccount)
     print(cc.groups)
 
-    filename = 'play_with_graph_algo/chapter04/g1.txt'
+    filename = 'play_with_graph_algorithms/chapter04/g1.txt'
     g = Graph(filename)
     cc = CC(g, recursive=False)
     print(cc.ccount)
     print(cc.groups)
 
-    filename = 'play_with_graph_algo/chapter04/g2.txt'
+    filename = 'play_with_graph_algorithms/chapter04/g2.txt'
     g = Graph(filename)
     cc = CC(g, recursive=False)
     print(cc.ccount)

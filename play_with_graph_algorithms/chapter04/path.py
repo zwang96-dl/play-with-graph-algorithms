@@ -1,4 +1,4 @@
-from play_with_graph_algo.chapter02.adj_set import AdjSet as Graph
+from play_with_graph_algorithms.chapter02.adj_set import AdjSet as Graph
 
 
 class Path:
@@ -64,7 +64,7 @@ class Path:
 
 
 if __name__ == '__main__':
-    filename = 'play_with_graph_algo/chapter04/g2.txt'
+    filename = 'play_with_graph_algorithms/chapter04/g2.txt'
     g = Graph(filename)
 
     path = Path(g, 0, 6)
