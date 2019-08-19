@@ -65,3 +65,8 @@ if __name__ == '__main__':
     g = Graph(filename)
     find_bridegs = FindBridges(g)
     print(find_bridegs.result)
+
+    filename = 'play_with_graph_algorithms/chapter08/tree.txt'
+    g = Graph(filename)
+    find_bridegs = FindBridges(g)
+    print(find_bridegs.result)
