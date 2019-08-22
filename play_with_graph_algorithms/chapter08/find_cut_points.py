@@ -4,16 +4,7 @@ from play_with_graph_algorithms.chapter02.adj_set import AdjSet as Graph
 from play_with_graph_algorithms.chapter03.graph_dfs import GraphDFS
 
 
-class Edge(namedtuple('Edge', ['v', 'w'])):
-
-    def __str__(self):
-        return '{}-{}'.format(self.v, self.w)
-
-    def __repr__(self):
-        return self.__str__()
-
-
-class FindBridges:
+class FindCutPoints:
 
     def __init__(self, G):
         self._G = G
@@ -24,7 +15,7 @@ class FindBridges:
         # 能够到达的最低的_ord值
         self._low = [2 ** 31 - 1] * G.V
         self._cnt = 0
-        self._res = []
+        self._res = set()
         # 遍历所有的点，相当于遍历图中所有可能存在的联通块
         for v in range(G.V):
             if not self._visited[v]:
@@ -36,13 +27,18 @@ class FindBridges:
         self._ord[v] = self._cnt
         self._low[v] = self._ord[v]
         self._cnt += 1
+
+        child = 0
         for w in self._G.adj(v):
             if not self._visited[w]:
                 self._dfs(w, v)
                 self._low[v] = min(self._low[v], self._low[w])
-                # 判断v-w是不是桥
-                if self._low[w] > self._ord[v]:
-                    self._res.append(Edge(v=v, w=w))
+                if v != parent and self._low[w] >= self._ord[v]:
+                    self._res.add(v)
+
+                child += 1
+                if v == parent and child > 1:
+                    self._res.add(v)
             # v w是环上的一条边
             # 肯定不是环
             # 此时可能需要更新下v的low值
@@ -51,21 +47,21 @@ class FindBridges:
 
     @property
     def result(self):
-        return self._res
+        return list(self._res)
 
 
 if __name__ == '__main__':
     filename = 'play_with_graph_algorithms/chapter08/g.txt'
     g = Graph(filename)
-    find_bridegs = FindBridges(g)
-    print(find_bridegs.result)
+    find_cut_points = FindCutPoints(g)
+    print(find_cut_points.result)
 
     filename = 'play_with_graph_algorithms/chapter08/g2.txt'
     g = Graph(filename)
-    find_bridegs = FindBridges(g)
-    print(find_bridegs.result)
+    find_cut_points = FindCutPoints(g)
+    print(find_cut_points.result)
 
     filename = 'play_with_graph_algorithms/chapter08/tree.txt'
     g = Graph(filename)
-    find_bridegs = FindBridges(g)
-    print(find_bridegs.result)
+    find_cut_points = FindCutPoints(g)
+    print(find_cut_points.result)
