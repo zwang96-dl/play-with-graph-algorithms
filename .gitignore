@@ -1,3 +1,4 @@
 .vscode
 virtualenv
 __pycache__
+.travis.yml
