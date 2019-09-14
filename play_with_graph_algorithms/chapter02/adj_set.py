@@ -5,6 +5,7 @@ class AdjSet:
     """
 
     def __init__(self, filename):
+        self._filename = filename
         lines = None
         with open(filename, 'r') as f:
             lines = f.readlines()
@@ -56,6 +57,14 @@ class AdjSet:
     def degree(self, v):
         return len(self.adj(v))
 
+    def remove_edge(self, v, w):
+        self.validate_vertex(v)
+        self.validate_vertex(w)
+        if w in self._adj[v]:
+            self._adj[v].remove(w)
+        if v in self._adj[w]:
+            self._adj[w].remove(v)
+
     def validate_vertex(self, v):
         if v < 0 or v >= self._V:
             raise ValueError('vertex ' + v + ' is invalid')
@@ -68,6 +77,9 @@ class AdjSet:
 
     def __repr__(self):
         return self.__str__()
+
+    def __copy__(self):
+        return AdjSet(self._filename)
 
 
 if __name__ == '__main__':
