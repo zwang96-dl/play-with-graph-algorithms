@@ -80,9 +80,7 @@ class WeightedGraph:
             res.append(
                 '{}: {}'.format(
                     v,
-                    ' '.join(
-                        '{}({})'.format(w, self._adj[v][w]) for w in self._adj[v],
-                    ),
+                    ' '.join('{}({})'.format(w, self._adj[v][w]) for w in self._adj[v]),
                 ),
             )
         return '\n'.join(res)
