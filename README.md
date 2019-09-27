@@ -182,3 +182,17 @@ def dfs(v, visited, lst):
 68. 横切边中的最短边，一定属于最终的最小生成树的一部分
 
 69. Kruskal的时间复杂度是O(ElogE)，即只跟边的数目有关
+
+70. Prim算法：逐点遍历，将当前最短的横切边添加到mst中
+
+71. Prim是逐点遍历，Kruskal思想是逐边遍历
+
+72. Prim时间复杂度：O((V-1)*(V+E)) = O(VE)，可以优化为O(ElogE)，和Kruskal一样
+
+73. 带权图的最小生成树才考虑使用Kruskal或者Prim算法，否则直接DFS或者BFS也可以
+
+74. Prim其实可以优化成O(ElogV)，但是需要借助索引堆的数据结构
+
+75. Fredman-Tarjan O(E + VlogV)
+
+76. Chazelle O(E*) 比E高一点点

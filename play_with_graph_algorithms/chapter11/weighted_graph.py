@@ -72,7 +72,7 @@ class WeightedGraph:
 
     def validate_vertex(self, v):
         if v < 0 or v >= self._V:
-            raise ValueError('vertex ' + v + ' is invalid')
+            raise ValueError('vertex ' + str(v) + ' is invalid')
 
     def __str__(self):
         res = ['V = {}, E = {}'.format(self._V, self._E)]
