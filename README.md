@@ -196,3 +196,14 @@ def dfs(v, visited, lst):
 75. Fredman-Tarjan O(E + VlogV)
 
 76. Chazelle O(E*) 比E高一点点
+
+### Chapter 12 最短路径算法
+77. 第一版非经优化的Dijkstra算法的复杂度是O(V^2)
+
+78. 可以使用堆优化查找最小值的循环，优化成O(ElogE)，相当于对边来遍历
+
+79. 求解最短路径：使用pre数组来判断每个点在哪儿来的
+
+80. 可以用索引堆优化到O(ElogV)
+
+81. Dijkstra不能处理处理负权边!!!
