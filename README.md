@@ -224,3 +224,7 @@ def dfs(v, visited, lst):
 85. Bellman-Ford如果只关注s到t之间的最短路径，不能提前终止
 
 86. Bellman-Ford的优化(SPFA, shortest path fast algorithm)
+
+87. Floyd算法：求所有点到所有点的最短距离，基本思路就是三重循环，t v w其中t是v和w的中间点
+
+88. Floyd算法复杂度O(V^3)
