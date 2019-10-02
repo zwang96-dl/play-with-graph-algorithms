@@ -67,7 +67,7 @@ class AdjList:
 
 
 if __name__ == '__main__':
-    filename = 'play_with_graph_algo/chapter02/g.txt'
+    filename = 'play_with_graph_algorithms/chapter02/g.txt'
     print(__file__)
     adj_list = AdjList(filename)
     print(adj_list)

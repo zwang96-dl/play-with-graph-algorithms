@@ -74,7 +74,7 @@ class AdjMatrix:
 
 
 if __name__ == '__main__':
-    filename = 'play_with_graph_algo/chapter02/g.txt'
+    filename = 'play_with_graph_algorithms/chapter02/g.txt'
     adj_matrix = AdjMatrix(filename)
     print(adj_matrix)
     

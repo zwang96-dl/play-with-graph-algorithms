@@ -1,11 +1,14 @@
-class AdjSet:
+class Graph:
 
-    """Suppose to use RB tree, but no TreeSet in vanilla Python, using
+    """Suppose to use RB tree, but no TreeSet/TreeMap in vanilla Python, using
     set instead.
+
+    Support both directed graph and indirected graph
     """
 
-    def __init__(self, filename):
+    def __init__(self, filename, directed=False):
         self._filename = filename
+        self._directed = directed
         lines = None
         with open(filename, 'r') as f:
             lines = f.readlines()
@@ -35,7 +38,8 @@ class AdjSet:
                 raise ValueError('Paralles edges are detected!')
 
             self._adj[a].add(b)
-            self._adj[b].add(a)
+            if not self._directed:
+                self._adj[b].add(a)
 
     @property
     def V(self):
@@ -54,23 +58,26 @@ class AdjSet:
         self.validate_vertex(v)
         return self._adj[v]
 
-    def degree(self, v):
-        return len(self.adj(v))
+    # def degree(self, v):
+    #     return len(self.adj(v))
 
     def remove_edge(self, v, w):
         self.validate_vertex(v)
         self.validate_vertex(w)
         if w in self._adj[v]:
             self._adj[v].remove(w)
-        if v in self._adj[w]:
+        if not self._directed and v in self._adj[w]:
             self._adj[w].remove(v)
 
     def validate_vertex(self, v):
         if v < 0 or v >= self._V:
             raise ValueError('vertex ' + v + ' is invalid')
 
+    def is_directed(self):
+        return self._directed
+
     def __str__(self):
-        res = ['V = {}, E = {}'.format(self._V, self._E)]
+        res = ['V = {}, E = {}, directed = {}'.format(self._V, self._E, self._directed)]
         for v in range(self._V):
             res.append('{}: {}'.format(v, ' '.join(str(w) for w in self._adj[v])))
         return '\n'.join(res)
@@ -79,11 +86,11 @@ class AdjSet:
         return self.__str__()
 
     def __copy__(self):
-        return AdjSet(self._filename)
+        return Graph(self._filename, self._directed)
 
 
 if __name__ == '__main__':
-    filename = 'play_with_graph_algorithms/chapter02/g.txt'
-    adj_set = AdjSet(filename)
-    print(adj_set)
+    filename = 'play_with_graph_algorithms/chapter13/ug.txt'
+    g = Graph(filename, directed=True)
+    print(g)
     
