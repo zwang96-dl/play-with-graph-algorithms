@@ -26,6 +26,9 @@ class Graph:
 
         # size V list of set
         self._adj = [set() for _ in range(self._V)]
+        self._indegree = [0] * self._V
+        self._outdegree = [0] * self._V
+
         for each_line in lines[1:]:
             a, b = (int(i) for i in each_line.split())
             self.validate_vertex(a)
@@ -38,6 +41,11 @@ class Graph:
                 raise ValueError('Paralles edges are detected!')
 
             self._adj[a].add(b)
+
+            if self._directed:
+                self._outdegree[a] += 1
+                self._indegree[b] += 1
+
             if not self._directed:
                 self._adj[b].add(a)
 
@@ -58,15 +66,33 @@ class Graph:
         self.validate_vertex(v)
         return self._adj[v]
 
-    # def degree(self, v):
-    #     return len(self.adj(v))
+    def degree(self, v):
+        if self._directed:
+            raise ValueError('degree only works on undirected graph')
+        return len(self.adj(v))
+
+    def indegree(self, v):
+        if not self._directed:
+            raise ValueError('indegree only works in directed graph')
+        self.validate_vertex(v)
+        return self._indegree[v]
+
+    def outdegree(self, v):
+        if not self._directed:
+            raise ValueError('outdegree only works in directed graph')
+        self.validate_vertex(v)
+        return self._outdegree[v]
 
     def remove_edge(self, v, w):
         self.validate_vertex(v)
         self.validate_vertex(w)
         if w in self._adj[v]:
-            self._adj[v].remove(w)
-        if not self._directed and v in self._adj[w]:
+            self._E -= 1
+            if self._directed:
+                self._outdegree[v] -= 1
+                self._indegree[w] -= 1
+        self._adj[v].remove(w)
+        if not self._directed:
             self._adj[w].remove(v)
 
     def validate_vertex(self, v):
@@ -92,5 +118,6 @@ class Graph:
 if __name__ == '__main__':
     filename = 'play_with_graph_algorithms/chapter13/ug.txt'
     g = Graph(filename, directed=True)
-    print(g)
-    
+
+    for v in range(g.V):
+        print(g.indegree(v), g.outdegree(v))
