@@ -6,9 +6,10 @@ class Graph:
     Support both directed graph and indirected graph
     """
 
-    def __init__(self, filename, directed=False):
+    def __init__(self, filename, directed=False, reverse=False):
         self._filename = filename
         self._directed = directed
+        self._reverse = reverse
         lines = None
         with open(filename, 'r') as f:
             lines = f.readlines()
@@ -31,6 +32,8 @@ class Graph:
 
         for each_line in lines[1:]:
             a, b = (int(i) for i in each_line.split())
+            if self._reverse:
+                a, b = b, a
             self.validate_vertex(a)
             self.validate_vertex(b)
 
@@ -48,6 +51,9 @@ class Graph:
 
             if not self._directed:
                 self._adj[b].add(a)
+
+    def reverse_graph(self):
+        return Graph(filename=self._filename, directed=self._directed, reverse=True)
 
     @property
     def V(self):
@@ -112,7 +118,7 @@ class Graph:
         return self.__str__()
 
     def __copy__(self):
-        return Graph(self._filename, self._directed)
+        return Graph(self._filename, self._directed, self._reverse)
 
 
 if __name__ == '__main__':

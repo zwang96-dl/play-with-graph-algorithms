@@ -8,6 +8,9 @@ class CC:
         self._visited = [-1] * G.V
         self._ccount = 0
 
+        if self._G.is_directed:
+            raise ValueError('CC only works in undirected graph')
+
         # 遍历所有的点，相当于遍历图中所有可能存在的联通块
         for v in range(G.V):
             if self._visited[v] == -1:
