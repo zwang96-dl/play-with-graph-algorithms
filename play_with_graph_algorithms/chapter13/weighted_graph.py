@@ -6,40 +6,49 @@ class WeightedGraph:
     Support both directed graph and indirected graph
     """
 
-    def __init__(self, filename, directed=False):
+    def __init__(self, filename, directed=False, is_redisual=False):
         self._filename = filename
         self._directed = directed
+        self._is_redisual = is_redisual
         lines = None
         with open(filename, 'r') as f:
             lines = f.readlines()
         if not lines:
             raise ValueError('Expected something from input file!')
 
-        # lines[0] -> V E
-        self._V, self._E = (int(i) for i in lines[0].split())
+        # lines[0] -> V e
+        self._E = 0
+        self._V, self._e = (int(i) for i in lines[0].split())
 
         if self._V < 0:
             raise ValueError('V must be non-negative')
 
-        if self._E < 0:
+        if self._e < 0:
             raise ValueError('E must be non-negative')
 
         # size V list of dictionaries
         self._adj = [dict() for _ in range(self._V)]
         for each_line in lines[1:]:
             a, b, weight = (int(i) for i in each_line.split())
-            self.validate_vertex(a)
-            self.validate_vertex(b)
+            self.add_edge(a, b, weight)
+            if self._is_redisual:
+                self.add_edge(b, a, 0)
 
-            if a == b:
-                raise ValueError('Self-Loop is detected!')
+    def add_edge(self, a, b, weight):
+        self.validate_vertex(a)
+        self.validate_vertex(b)
 
-            if b in self._adj[a]:
-                raise ValueError('Paralles edges are detected!')
+        if a == b:
+            raise ValueError('Self-Loop is detected!')
 
-            self._adj[a][b] = weight
-            if not self._directed:
-                self._adj[b][a] = weight
+        if b in self._adj[a]:
+            raise ValueError('Paralles edges are detected!')
+
+        self._adj[a][b] = weight
+        if not self._directed:
+            self._adj[b][a] = weight
+
+        self._E += 1
 
     @property
     def V(self):
@@ -63,6 +72,13 @@ class WeightedGraph:
             return self._adj[v][w]
         raise ValueError('No edge {}-{}'.format(v, w))
 
+    def set_weight(self, v, w, net_weight):
+        if not self.has_edge(v, w):
+            raise ValueError('No edge {}-{}'.format(v, w))
+        self._adj[v][w] = net_weight
+        if not self._directed:
+            self._adj[w][v] = net_weight
+
     # def degree(self, v):
     #     return len(self.adj(v))
 
@@ -80,6 +96,10 @@ class WeightedGraph:
 
     def is_directed(self):
         return self._directed
+
+    def generate_redisual_graph(self):
+        # redisual graph is definitely a directed graph
+        return WeightedGraph(self._filename, directed=True, is_redisual=True)
 
     def __str__(self):
         res = ['V = {}, E = {}, directed = {}'.format(self._V, self._E, self._directed)]
