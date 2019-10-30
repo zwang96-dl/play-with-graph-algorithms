@@ -9,7 +9,6 @@ class BiPartiteDetection:
         # -1 means not colored yet, should be 0 or 1
         self._colors = [-1] * G.V
         self._is_bi_partite = True
-
         for v in range(G.V):
             if not self._visited[v]:
                 # if v is not visited
@@ -27,7 +26,7 @@ class BiPartiteDetection:
         self._colors[v] = color
         for w in self._G.adj(v):
             if not self._visited[w]:
-                if self._dfs_recursive(w, 1 - color):
+                if not self._dfs_recursive(w, 1 - color):
                     return False
             elif self._colors[w] == self._colors[v]:
                 return False
@@ -35,6 +34,9 @@ class BiPartiteDetection:
 
     def is_bi_partite(self):
         return self._is_bi_partite
+
+    def colors(self):
+        return self._colors
 
 
 if __name__ == '__main__':

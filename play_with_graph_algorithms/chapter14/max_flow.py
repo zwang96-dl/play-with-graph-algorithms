@@ -5,7 +5,7 @@ from play_with_graph_algorithms.chapter13.weighted_graph import WeightedGraph
 
 class MaxFlow:
 
-    def __init__(self, network, s, t):
+    def __init__(self, network, s, t, empty_graph=False, directed=True, V=None):
         if not network.is_directed():
             raise ValueError('MaxFlow only works in directed graph!')
 
@@ -21,7 +21,18 @@ class MaxFlow:
         self._network = network
         self._s = s
         self._t = t
-        self._rG = self._network.generate_redisual_graph()
+        if not empty_graph:
+            self._rG = self._network.generate_redisual_graph()
+        else:
+            # 生成残量图
+            temp = []
+            for v in range(self._network.V):
+                for w in self._network.adj(v):
+                    temp.append([w, v, 0])
+            for each in temp:
+                self._network.add_edge(*each)
+            self._rG = self._network
+
         self._max_flow = 0
 
         while True:
@@ -104,3 +115,8 @@ if __name__ == "__main__":
     for v in range(network.V):
         for w in network.adj(v):
             print('{}-{} : {} / {}'.format(v, w, maxflow.flow(v, w), network.get_weight(v, w)))
+
+    filename = 'play_with_graph_algorithms/chapter14/baseball.txt'
+    network = WeightedGraph(filename, directed=True)
+    maxflow = MaxFlow(network, 0, 10)
+    print(maxflow.result())

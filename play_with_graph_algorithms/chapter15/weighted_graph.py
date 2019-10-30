@@ -6,39 +6,7 @@ class WeightedGraph:
     Support both directed graph and indirected graph
     """
 
-    def __init__(
-        self,
-        filename=None,
-        directed=False,
-        is_redisual=False,
-        empty_graph=False,
-        V=None,
-    ):
-        if empty_graph is False:
-            self._generate_graph_from_file(
-                filename=filename,
-                directed=directed,
-                is_redisual=is_redisual,
-                empty_graph=empty_graph,
-            )
-        else:
-            self._generate_empty_graph(directed, V)
-
-    def _generate_empty_graph(self, directed, V):
-        self._V = V
-        self._directed = directed
-        self._E = 0
-        self._adj = [dict() for _ in range(self._V)]
-
-        self._filename = None
-
-    def _generate_graph_from_file(
-        self,
-        filename,
-        directed=False,
-        is_redisual=False,
-        empty_graph=False,
-    ):
+    def __init__(self, filename, directed=False, is_redisual=False):
         self._filename = filename
         self._directed = directed
         self._is_redisual = is_redisual
@@ -73,8 +41,8 @@ class WeightedGraph:
         if a == b:
             raise ValueError('Self-Loop is detected!')
 
-        # if b in self._adj[a]:
-        #     raise ValueError('Paralles edges are detected!')
+        if b in self._adj[a]:
+            raise ValueError('Paralles edges are detected!')
 
         self._adj[a][b] = weight
         if not self._directed:
@@ -129,11 +97,9 @@ class WeightedGraph:
     def is_directed(self):
         return self._directed
 
-    def generate_redisual_graph(self, empty_graph=False):
+    def generate_redisual_graph(self):
         # redisual graph is definitely a directed graph
-        if not empty_graph:
-            return WeightedGraph(filename=self._filename, directed=True, is_redisual=True)
-        return WeightedGraph(empty_graph=True, directed=True, is_redisual=True)
+        return WeightedGraph(self._filename, directed=True, is_redisual=True)
 
     def __str__(self):
         res = ['V = {}, E = {}, directed = {}'.format(self._V, self._E, self._directed)]
@@ -157,4 +123,3 @@ if __name__ == '__main__':
     filename = 'play_with_graph_algorithms/chapter13/wg.txt'
     w_graph = WeightedGraph(filename, directed=True)
     print(w_graph)
-    
