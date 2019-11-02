@@ -1,5 +1,6 @@
 from collections import deque
 
+
 class WaterPuzzle:
 
     def __init__(self):

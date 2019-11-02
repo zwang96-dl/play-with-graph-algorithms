@@ -1,5 +1,6 @@
 from collections import deque
 
+
 class Solution:
     def sliding_puzzle(self, board):
         """

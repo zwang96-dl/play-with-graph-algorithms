@@ -1,5 +1,6 @@
 from collections import deque
 
+
 class Solution:
 
     def open_lock(self, deadends, target):

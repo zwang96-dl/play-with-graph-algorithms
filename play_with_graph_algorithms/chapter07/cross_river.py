@@ -1,5 +1,6 @@
 from collections import deque
 
+
 class Solution:
 
     def cross_river(self, begin):
